@@ -1,0 +1,6 @@
+name,start_date,end_date,monthly_amount,contract_addon,addon_amount,primary_subscriber,previous_contract,canceled_contract,hardware_type,customer_age,credit_card_on_account,postal_code,internet_only,call_only,internet_only,on_contract
+Richard Brown,2021-12-27,2023-02-23,42.4,Home Phone,30.5,Yes,No,No,Android 11,32,Yes,M3A7A2,Yes,No,Yes,
+Donna Washington,2022-06-23,2022-09-29,87.6,Home Phone,22.4,No,No,No,Android 13,22,,M3A7A2,No,Yes,No,No
+Daniel Smith,2022-11-14,2022-08-25,28.1,Home Phone,25.7,,No,No,iOS 12,46,No,M3A7A2,No,No,No,Yes
+Nathan Burns,2022-06-25,2022-06-23,121.8,,,No,No,Yes,iOS 14,21,Yes,M3A7A2,No,Yes,No,Yes
+Megan King,2023-01-15,2022-07-10,97.6,Roaming,17.8,Yes,Yes,No,iOS 10,52,Yes,M3A7A2,Yes,No,Yes,Yes
