@@ -1,6 +1,6 @@
 import datetime
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import streamlit as st
 
 
@@ -28,31 +28,31 @@ dfClean = pd.read_csv("dataset_5.csv")
 st.write(dfClean)
 
 # Add some matplotlib code !
-fig, ax = plt.subplots()
-df.hist(
-bins=8,
-column="customer_age",
-grid=False,
-figsize=(8, 8),
-color="#86bf91",
-zorder=2,
-rwidth=0.9,
-ax=ax,
-)
-st.write(fig)
+# fig, ax = plt.subplots()
+# df.hist(
+# bins=8,
+# column="customer_age",
+# grid=False,
+# figsize=(8, 8),
+# color="#86bf91",
+# zorder=2,
+# rwidth=0.9,
+# ax=ax,
+# )
+# st.write(fig)
 
-fig_age, ax_age = plt.subplots()
-dfClean.hist(
-bins=8,
-column="customer_age",
-grid=False,
-figsize=(8, 8),
-color="#86bf91",
-zorder=2,
-rwidth=0.9,
-ax=ax_age,
-)
-st.write(fig_age)
+# fig_age, ax_age = plt.subplots()
+# dfClean.hist(
+# bins=8,
+# column="customer_age",
+# grid=False,
+# figsize=(8, 8),
+# color="#86bf91",
+# zorder=2,
+# rwidth=0.9,
+# ax=ax_age,
+# )
+# st.write(fig_age)
 
 st.write("""
 ## Current Customer
