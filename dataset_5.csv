@@ -1,0 +1,6 @@
+name,start_date,end_date,monthly_amount,contract_addon,addon_amount,primary_subscriber,previous_contract,canceled_contract,hardware_type,customer_age,credit_card_on_account,postal_code,internet_only,call_only,internet_only,on_contract
+Richard Brown,2021-12-27,2023-02-23,42.4,0,30.5,0,1,0,1,56,1,53432,1,0,1,0
+Donna Washington,2022-06-23,2022-09-29,87.6,0,22.4,0,1,1,1,22,0,74443,0,1,0,0
+Daniel Smith,2022-11-14,2022-08-25,28.1,1,25.7,1,0,0,0,46,1,27239,0,0,0,1
+Nathan Burns,2022-06-25,2022-06-23,121.8,0,32.7,0,0,1,0,50,1,32352,0,1,0,1
+Megan King,2023-01-15,2022-07-10,97.6,1,17.8,0,0,0,1,19,1,41501,1,0,1,0
