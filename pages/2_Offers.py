@@ -18,25 +18,25 @@ st.write(
 
 # input
 tab1, tab2 = st.tabs(["Prediction", "Data"])
-col1, col2, col3 = tab1.columns(3)
 with tab1:
     tab1.header("Prediction")
+    col1, col2, col3 = tab1.columns(3)
     with col1:
-        start_date = tab1.date_input("Contract Start Date", datetime.date(2010, 1, 31))
-        monthly_amount = tab1.selectbox("Monthly Amount", (45, 65))
-        end_date = tab1.date_input("Contract End Date", datetime.date(2010, 1, 31))
-        contract_amount = tab1.slider("Contract Amount", 0.0, 300.0, 10.0)
+        start_date = st.date_input("Contract Start Date", datetime.date(2010, 1, 31))
+        monthly_amount = st.selectbox("Monthly Amount", (45, 65))
+        end_date = st.date_input("Contract End Date", datetime.date(2010, 1, 31))
+        contract_amount = st.slider("Contract Amount", 0.0, 300.0, 10.0)
 
     with col2:
-        previous_offer = tab1.selectbox("Previous Offer", ("Call", "Home"))
-        addons_amount = tab1.slider("Contract Addons Amount", 0.0, 100.0, 0.0)
-        cancelled_contract = tab1.selectbox("Canceled Contract", ("True", "False"))
+        previous_offer = st.selectbox("Previous Offer", ("Call", "Home"))
+        addons_amount = st.slider("Contract Addons Amount", 0.0, 100.0, 0.0)
+        cancelled_contract = st.selectbox("Canceled Contract", ("True", "False"))
 
     with col3:
-        age = tab1.slider("Customer Age", 18, 80, 18)
-        location = tab1.selectbox("Customer Location", ("Ontario", "BC", "AB"))
-        admin = tab1.selectbox("Is Primary Sub", ("True", "False"))
-        hard_type = tab1.selectbox("Type Of Hardware", ("iOS", "Android"))
+        age = st.slider("Customer Age", 18, 80, 18)
+        location = st.selectbox("Customer Location", ("Ontario", "BC", "AB"))
+        admin = st.selectbox("Is Primary Sub", ("True", "False"))
+        hard_type = st.selectbox("Type Of Hardware", ("iOS", "Android"))
 
 # ================================================================================================
 
