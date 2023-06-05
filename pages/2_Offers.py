@@ -40,11 +40,7 @@ with tab1:
 
 # ================================================================================================
 
-tab1.write(
-    """
-### The Current Customer
-"""
-)
+tab1.write("""### The Current Customer""")
 
 data_input = [
     {
@@ -67,28 +63,55 @@ tab1.write(dataFR)
 # ============================================================================================================
 
 # Prepare input
-# feature_cols = ['monthly_amount','contract_addon','addon_amount','primary_subscriber', 'previous_contract', 'canceled_contract', 'hardware_type', 'customer_age', 'credit_card_on_account', 'postal_code', 'internet_only', 'call_only', 'internet_and_call']
 pre_offer = 1 if previous_offer == "Call" else 0
 can_contract = 1 if cancelled_contract == "True" else 0
+monthly_amount = 0
+contract_addon = 0
+addon_amount = 0
+primary_subscriber = 0
+previous_contract = 0
+canceled_contract = 0
+hardware_type = 0
+customer_age = 0
+credit_card_on_account = 0
+postal_code = 0
+internet_only = 0
+call_only = 0
+internet_and_call = 0
 # st.write(pre_offer)
 # st.write(can_contract)
 
-tab1.write(
-    """
-### Submit To Predict The Offer
-"""
-)
+tab1.write("""### Submit To Predict The Offer""")
 
 model = pickle.load(open("./finalized_model.sav", "rb"))
+prediction = ""
 if tab1.button("Submit To Predict"):
-    make_prediction = model.predict([[]])
+    make_prediction = model.predict(
+        [
+            [
+                monthly_amount,
+                contract_addon,
+                addon_amount,
+                primary_subscriber,
+                previous_contract,
+                canceled_contract,
+                hardware_type,
+                customer_age,
+                credit_card_on_account,
+                postal_code,
+                internet_only,
+                call_only,
+                internet_and_call,
+            ]
+        ]
+    )
+    if make_prediction[0] == 0:
+        prediction = "Customer does not need a CONTRACT"
+    else:
+        prediction = "Customer should be given a CONTRACT"
 
-tab1.write(
-    """
-#### The Offer is 
-"""
-)
-
+tab1.write("""#### The Offer is""")
+tab1.write(prediction)
 
 with tab2:
     tab2.header("Raw Data")
