@@ -17,27 +17,30 @@ st.write(
 # ===============================================================================================
 
 # input
-col1, col2, col3 = st.columns(3)
-with col1:
-    start_date = st.date_input("Contract Start Date", datetime.date(2010, 1, 31))
-    end_date = st.date_input("Contract End Date", datetime.date(2010, 1, 31))
-    contract_amount = st.slider("Contract Amount", 0.0, 300.0, 10.0)
+tab1, tab2 = st.tabs(["Prediction", "Data"])
+col1, col2, col3 = tab1.columns(3)
+with tab1:
+    tab1.header("Prediction")
+    with col1:
+        start_date = tab1.date_input("Contract Start Date", datetime.date(2010, 1, 31))
+        monthly_amount = tab1.selectbox("Monthly Amount", (45, 65))
+        end_date = tab1.date_input("Contract End Date", datetime.date(2010, 1, 31))
+        contract_amount = tab1.slider("Contract Amount", 0.0, 300.0, 10.0)
 
-with col2:
-    previous_offer = st.selectbox("Previous Offer", ("Call", "Home"))
-    addons_amount = st.slider("Contract Addons Amount", 0.0, 100.0, 0.0)
-    cancelled_contract = st.selectbox("Canceled Contract", ("True", "False"))
+    with col2:
+        previous_offer = tab1.selectbox("Previous Offer", ("Call", "Home"))
+        addons_amount = tab1.slider("Contract Addons Amount", 0.0, 100.0, 0.0)
+        cancelled_contract = tab1.selectbox("Canceled Contract", ("True", "False"))
 
-with col3:
-    age = st.slider("Customer Age", 18, 80, 18)
-    location = st.selectbox("Customer Location", ("Ontario", "BC", "AB"))
-    admin = st.selectbox("Is Primary Sub", ("True", "False"))
-    hard_type = st.selectbox("Type Of Hardware", ("iOS", "Android"))
-
+    with col3:
+        age = tab1.slider("Customer Age", 18, 80, 18)
+        location = tab1.selectbox("Customer Location", ("Ontario", "BC", "AB"))
+        admin = tab1.selectbox("Is Primary Sub", ("True", "False"))
+        hard_type = tab1.selectbox("Type Of Hardware", ("iOS", "Android"))
 
 # ================================================================================================
 
-st.write(
+tab1.write(
     """
 ### The Current Customer
 """
@@ -59,136 +62,78 @@ data_input = [
 ]
 
 dataFR = pd.DataFrame(data_input)
-st.write(dataFR)
+tab1.write(dataFR)
 
 # ============================================================================================================
 
 # Prepare input
+# feature_cols = ['monthly_amount','contract_addon','addon_amount','primary_subscriber', 'previous_contract', 'canceled_contract', 'hardware_type', 'customer_age', 'credit_card_on_account', 'postal_code', 'internet_only', 'call_only', 'internet_and_call']
 pre_offer = 1 if previous_offer == "Call" else 0
 can_contract = 1 if cancelled_contract == "True" else 0
 # st.write(pre_offer)
 # st.write(can_contract)
 
-st.write(
+tab1.write(
     """
 ### Submit To Predict The Offer
 """
 )
 
 model = pickle.load(open("./finalized_model.sav", "rb"))
-if st.button("Submit To Predict"):
+if tab1.button("Submit To Predict"):
     make_prediction = model.predict([[]])
 
-st.write(
+tab1.write(
     """
 #### The Offer is 
 """
 )
 
 
-# =================================================================================================
+with tab2:
+    tab2.header("Raw Data")
+    df = pd.read_csv("dataset_raw.csv")
+    tab2.write(df)
 
-
-st.write(
+    tab2.write(
+        """
+    ## Transformed Data
     """
+    )
+    df = pd.read_csv("dataset_missing.csv")
+    tab2.write(df)
 
-"""
-)
-
-st.write(
+    tab2.write(
+        """
+    ## Cleaned Data
     """
+    )
+    dfClean = pd.read_csv("dataset_5.csv")
+    tab2.write(dfClean)
 
-"""
-)
+    # Add some matplotlib code !
+    # fig, ax = plt.subplots()
+    # df.hist(
+    # bins=8,
+    # column="customer_age",
+    # grid=False,
+    # figsize=(8, 8),
+    # color="#86bf91",
+    # zorder=2,
+    # rwidth=0.9,
+    # ax=ax,
+    # )
+    # st.write(fig)
 
-st.write(
-    """
-
-"""
-)
-
-st.write(
-    """
-
-"""
-)
-
-st.write(
-    """
-
-"""
-)
-
-st.write(
-    """
-
-"""
-)
-st.write(
-    """
-
-"""
-)
-
-st.write(
-    """
-
-"""
-)
-
-st.write(
-    """
-
-"""
-)
-
-st.write(
-    """
-## Raw Data
-"""
-)
-df = pd.read_csv("dataset_raw.csv")
-st.write(df)
-
-st.write(
-    """
-## Transformed Data
-"""
-)
-df = pd.read_csv("dataset_missing.csv")
-st.write(df)
-
-st.write(
-    """
-## Cleaned Data
-"""
-)
-dfClean = pd.read_csv("dataset_5.csv")
-st.write(dfClean)
-
-# Add some matplotlib code !
-# fig, ax = plt.subplots()
-# df.hist(
-# bins=8,
-# column="customer_age",
-# grid=False,
-# figsize=(8, 8),
-# color="#86bf91",
-# zorder=2,
-# rwidth=0.9,
-# ax=ax,
-# )
-# st.write(fig)
-
-# fig_age, ax_age = plt.subplots()
-# dfClean.hist(
-# bins=8,
-# column="customer_age",
-# grid=False,
-# figsize=(8, 8),
-# color="#86bf91",
-# zorder=2,
-# rwidth=0.9,
-# ax=ax_age,
-# )
-# st.write(fig_age)
+    # fig_age, ax_age = plt.subplots()
+    # dfClean.hist(
+    # bins=8,
+    # column="customer_age",
+    # grid=False,
+    # figsize=(8, 8),
+    # color="#86bf91",
+    # zorder=2,
+    # rwidth=0.9,
+    # ax=ax_age,
+    # )
+    # st.write(fig_age)
